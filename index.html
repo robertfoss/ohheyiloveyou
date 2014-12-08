@@ -76,7 +76,7 @@
     </style>
     <script type="text/javascript" src="jquery-2.1.1.js"></script>
     <script type="text/javascript">
-        <!--  -60 -130
+        <!--
         var msgBank = ["i love you so",
                        "it's so easy to be who i want to be around you",
                        "<3 <3 <3 <3"];
@@ -93,7 +93,7 @@
                 diffDays = 1;
             if (diffDays > msgBank.length)
                 diffDays = msgBank.length;
-            return msgBank.slice(0, diffDays+2).reverse();
+            return msgBank.slice(0, diffDays+2);
         }
         function animateMessages(msgs, content)
         {
@@ -146,8 +146,7 @@
 <body>
     <div class="container">
         <div id="content" class="content">
-            <object data="heart.svg" type="image/svg+xml">
-            </object>
+            <img src="heart_svg.png">
             <div id="1" class="text textbox1">111111111111111111111</div>
             <div id="2" class="text textbox2">222222222222222222222</div>
             <div id="3" class="text textbox3">333333333333333333333</div>
