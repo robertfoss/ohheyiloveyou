@@ -29,6 +29,7 @@
             opacity: 0.4;
             background-color: #ff0000;
             position:absolute;
+            display: hidden;
             width: 150px;
             height: 35px;
         }
@@ -76,47 +77,59 @@
     <script type="text/javascript" src="jquery-2.1.1.js"></script>
     <script type="text/javascript">
         <!--  -60 -130
-        var msgBank = ["i love you so", "you make help me be better", "<3 <3 <3 <3"];
+        var msgBank = ["i love you so",
+                       "it's so easy to be who i want to be around you",
+                       "<3 <3 <3 <3"];
         function sayHello() {
            alert("Hello World");
         }
         function selectMessages()
         {
             var dayInMs = 24*3600*1000;
-            var now = Date();
+            var now = new Date();
             var xmas = new Date(2014, 12, 24, 0, 0, 0);
-            var diffDays = (now - xmas).getTime() / dayInMs;
+            var diffDays = (now.getTime() - xmas.getTime()) / dayInMs;
             if (diffDays < 1)
                 diffDays = 1;
             if (diffDays > msgBank.length)
                 diffDays = msgBank.length;
-            return msgBank.slice(0, diffDays+1);
+            return msgBank.slice(0, diffDays+2).reverse();
         }
         function animateMessages(msgs, content)
         {
             var lastDiv;
+            var timePerWord = 4500;
+            var timePerMsg  = 7000;
+            var timeout = 0;
             msgs.forEach(function(msg) {
-                var words = msd.split(" ");
-                words.forEach(function(msg) {
-                    var words = msd.split(" ");
-                    var div;
-                    do {
-                        div = Math.floor((Math.random() * 10) + 1);
-                    } while (div == lastDiv);
-                    lastDiv = div;
-                    animateWord("#"+div, word);
-                });
-                
+                setTimeout(function(){
+                    var words = msg.split(" ");
+                    words.forEach(function(word) {
+                        setTimeout(function(){
+                            var div;
+                            do {
+                                div = Math.floor((Math.random() * 8) + 1);
+                            } while (div == lastDiv);
+                            lastDiv = div;
+                            animateWord("#" + div, word);                
+                        
+                        }, timeout);
+                        timeout = timeout + timePerWord;
+                    });
+                }, timeout);
+                timeout = timeout + timePerMsg;
             });
         }
         function animateWord(div, word)
         {
+            console.log("animateWord() div=" + div + " word=" + word);
+            var fadeIn  = 250;
+            var fadeOut = 3500;
+            var animationTime = fadeIn + fadeOut;
             var element = $(div);
-            element
-                .show("slow")
-                .animate({ marginLeft: 300 }, 1000)
-                .animate({ marginLeft: 0 },   1000)
-                .hide("slow", arguments.callee);
+            element.text(word)
+                   .fadeIn(fadeIn)
+                   .fadeOut(fadeOut);
         }
         
         $(function () {
@@ -124,7 +137,6 @@
             var content = $("#content");
             function loop() {
                 animateMessages(msgs, content);
-
             }
             loop();
         });
