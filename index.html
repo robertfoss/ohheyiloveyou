@@ -1,7 +1,9 @@
-<html>
+<!DOCTYPE html>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-<link rel="icon" href="heart.ico" type="image/x-icon">
-  <style>
+<meta charset="UTF-8">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <style>
         html, body {
             margin: 0;
             padding: 0;
@@ -15,6 +17,7 @@
             vertical-align: middle;
         }
         .content {
+            position: relative;
             display: inline-block;
             text-align: left;
         }
@@ -29,52 +32,117 @@
             height: 35px;
         }
         .textbox1 {
-            top: 380px;
-            left: 170px;
+            width: 150px;
+            top: 360px;
+            left: 60px;
         }
         .textbox2 {
-            top: 230px;
-            left: 310px;
+            width: 130px;
+            top: 170px;
+            left: 180px;
         }
         .textbox3 {
-            top: 320px;
-            left: 310px;
+            width: 150px;
+            top: 260px;
+            left: 180px;
         }
         .textbox4 {
-            top: 540px;
-            left: 250px;
+            width: 180px;
+            top: 480px;
+            left: 120px;
         }
         .textbox5 {
-            top: 290px;
-            left: 480px;
+            width: 180px;
+            top: 230px;
+            left: 350px;
         }
         .textbox6 {
-            top: 170px;
-            left: 530px;
+            width: 130px;
+            top: 110px;
+            left: 410px;
         }
         .textbox7 {
-            top: 520px;
-            left: 460px;
+            width: 280px;
+            top: 460px;
+            left: 330px;
         }
         .textbox8 {
-            top: 350px;
-            left: 650px;
+            width: 170px;
+            top: 290px;
+            left: 520px;
         }
     </style>
+    <script type="text/javascript" src="jquery-2.1.1.js"></script>
+    <script type="text/javascript">
+        <!--  -60 -130
+        var msgBank = ["i love you so", "you make help me be better", "<3 <3 <3 <3"];
+        function sayHello() {
+           alert("Hello World");
+        }
+        function selectMessages()
+        {
+            var dayInMs = 24*3600*1000;
+            var now = Date();
+            var xmas = new Date(2014, 12, 24, 0, 0, 0);
+            var diffDays = (now - xmas).getTime() / dayInMs;
+            if (diffDays < 1)
+                diffDays = 1;
+            if (diffDays > msgBank.length)
+                diffDays = msgBank.length;
+            return msgBank.slice(0, diffDays+1);
+        }
+        function animateMessages(msgs, content)
+        {
+            var lastDiv;
+            msgs.forEach(function(msg) {
+                var words = msd.split(" ");
+                words.forEach(function(msg) {
+                    var words = msd.split(" ");
+                    var div;
+                    do {
+                        div = Math.floor((Math.random() * 10) + 1);
+                    } while (div == lastDiv);
+                    lastDiv = div;
+                    animateWord("#"+div, word);
+                });
+                
+            });
+        }
+        function animateWord(div, word)
+        {
+            var element = $(div);
+            element
+                .show("slow")
+                .animate({ marginLeft: 300 }, 1000)
+                .animate({ marginLeft: 0 },   1000)
+                .hide("slow", arguments.callee);
+        }
+        
+        $(function () {
+            var msgs = selectMessages();
+            var content = $("#content");
+            function loop() {
+                animateMessages(msgs, content);
+
+            }
+            loop();
+        });
+        //-->
+    </script>
 </head>
 <body>
     <div class="container">
-        <div class="content">
+        <div id="content" class="content">
             <object data="heart.svg" type="image/svg+xml">
             </object>
-            <div class="text textbox1">111111111111111111111</div>
-            <div class="text textbox2">222222222222222222222</div>
-            <div class="text textbox3">333333333333333333333</div>
-            <div class="text textbox4">444444444444444444444</div>
-            <div class="text textbox5">555555555555555555555</div>
-            <div class="text textbox6">666666666666666666666</div>
-            <div class="text textbox7">777777777777777777777</div>
-            <div class="text textbox8">888888888888888888888</div>
+            <div id="1" class="text textbox1">111111111111111111111</div>
+            <div id="2" class="text textbox2">222222222222222222222</div>
+            <div id="3" class="text textbox3">333333333333333333333</div>
+            <div id="4" class="text textbox4">444444444444444444444</div>
+            <div id="5" class="text textbox5">555555555555555555555</div>
+            <div id="6" class="text textbox6">666666666666666666666</div>
+            <div id="7" class="text textbox7">777777777777777777777</div>
+            <div id="8" class="text textbox8">888888888888888888888</div>
         </div>
     </div>
 </body>
