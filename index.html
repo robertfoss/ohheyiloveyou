@@ -93,7 +93,7 @@
                 diffDays = 1;
             if (diffDays > msgBank.length)
                 diffDays = msgBank.length;
-            return msgBank.slice(0, diffDays+2);
+            return msgBank.slice(0, diffDays+2).reverse();
         }
         function animateMessages(msgs, content)
         {
