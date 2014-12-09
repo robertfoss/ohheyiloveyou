@@ -26,12 +26,12 @@
         .text {
             text-align: center;
             white-space: nowrap;
-            opacity: 0.4;
-            background-color: #ff0000;
             position:absolute;
             display: none;
+            font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
             width: 150px;
             height: 35px;
+            font-size: 26px;
         }
         .textbox1 {
             width: 150px;
@@ -92,45 +92,47 @@
                 diffDays = msgBank.length;
             return msgBank.slice(0, diffDays+2).reverse();
         }
-        function animateMessages(msgs, content)
+        function animateMessages(msgs)
         {
-            var lastDiv;
-            var timePerWord = 1500;
-            var timePerMsg  = 7000;
-            var timeout = 0;
+            var timePerWord = 800;
+            var timePerMsg  = 5000;
+            var timeout = 400;
+            
+            // Queue up animations
             msgs.forEach(function(msg) {
                 var words = msg.split(" ");
                 words.forEach(function(word) {
                     setTimeout(function(){
-                        var div;
-                        do {
-                            div = Math.floor((Math.random() * 8) + 1);
-                        } while (div == lastDiv);
-                        lastDiv = div;
-                        animateWord("#" + div, word);                
+                        animateWord(word);                
                     
                     }, timeout);
-                    timeout = timeout + timePerWord;
+                    timeout += timePerWord;
                 });
-                timeout = timeout + timePerMsg;
+                timeout += timePerMsg;
             });
         }
-        function animateWord(div, word)
+        function animateWord(word)
         {
-            console.log("animateWord() div=" + div + " word=" + word);
             var fadeIn  = 400;
-            var fadeOut = 3500;
-            var element = $(div);
-            element.text(word)
-                   .fadeIn(fadeIn)
-                   .fadeOut(fadeOut);
+            var fadeOut = 2500;
+            
+            // Pick a box that isn't animating
+            var boxes = $('[id^="t"]');
+            var readyBoxes = boxes.filter(':not(:animated)').toArray();
+            var nbrReady = readyBoxes.length;
+            var rand = Math.floor(Math.random()*nbrReady);
+            var obj = readyBoxes[rand];
+            var elemID = obj.getAttribute('id');
+            $("#" + elemID).text(word)
+                     .fadeIn(fadeIn)
+                     .fadeOut(fadeOut);
         }
         
         $(function () {
             var msgs = selectMessages();
             var content = $("#content");
             function loop() {
-                animateMessages(msgs, content);
+                animateMessages(msgs);
             }
             loop();
         });
@@ -141,14 +143,14 @@
     <div class="container">
         <div id="content" class="content">
             <img src="heart_svg.png">
-            <div id="1" class="text textbox1">111111111111111111111</div>
-            <div id="2" class="text textbox2">222222222222222222222</div>
-            <div id="3" class="text textbox3">333333333333333333333</div>
-            <div id="4" class="text textbox4">444444444444444444444</div>
-            <div id="5" class="text textbox5">555555555555555555555</div>
-            <div id="6" class="text textbox6">666666666666666666666</div>
-            <div id="7" class="text textbox7">777777777777777777777</div>
-            <div id="8" class="text textbox8">888888888888888888888</div>
+            <div id="t1" class="text textbox1">111111111111111111111</div>
+            <div id="t2" class="text textbox2">222222222222222222222</div>
+            <div id="t3" class="text textbox3">333333333333333333333</div>
+            <div id="t4" class="text textbox4">444444444444444444444</div>
+            <div id="t5" class="text textbox5">555555555555555555555</div>
+            <div id="t6" class="text textbox6">666666666666666666666</div>
+            <div id="t7" class="text textbox7">777777777777777777777</div>
+            <div id="t8" class="text textbox8">888888888888888888888</div>
         </div>
     </div>
 </body>
