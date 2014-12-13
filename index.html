@@ -74,29 +74,29 @@
             left: 520px;
         }
     </style>
-    <script type="text/javascript" src="jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
     <script type="text/javascript">
         <!--
-        var msgBank = ["i love you so much",
-                       "it's so easy to be who i want to be around you",
-                       "<3 <3 <3 <3"];
+        var msgBank = ["<3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3",
+                       "i love you so much",
+                       "it's so easy to be who i want to be around you"];
         function selectMessages()
         {
             var dayInMs = 24*3600*1000;
             var now = new Date();
-            var xmas = new Date(2014, 12, 24, 0, 0, 0);
+            var xmas = new Date(2014, 12, 25, 0, 0, 0);
             var diffDays = (now.getTime() - xmas.getTime()) / dayInMs;
             if (diffDays < 1)
                 diffDays = 1;
             if (diffDays > msgBank.length)
                 diffDays = msgBank.length;
-            return msgBank.slice(0, diffDays+2).reverse();
+            return msgBank.slice(0, diffDays+1).reverse();
         }
         function animateMessages(msgs)
         {
             var timePerWord = 800;
             var timePerMsg  = 5000;
-            var timeout = 400;
+            var timeout = 400; // Initialized with the time to first word
             
             // Queue up animations
             msgs.forEach(function(msg) {
@@ -123,9 +123,11 @@
             var rand = Math.floor(Math.random()*nbrReady);
             var obj = readyBoxes[rand];
             var elemID = obj.getAttribute('id');
+            
+            // Animate
             $("#" + elemID).text(word)
-                     .fadeIn(fadeIn)
-                     .fadeOut(fadeOut);
+                           .fadeIn(fadeIn)
+                           .fadeOut(fadeOut);
         }
         
         $(function () {
