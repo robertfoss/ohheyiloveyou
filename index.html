@@ -78,19 +78,19 @@
     <script type="text/javascript">
         <!--
         var msgBank = ["<3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3",
-                       "i love you so much",
-                       "it's so easy to be who i want to be around you"];
+                       "I love you so much",
+                       "it's so easy to be who I want to be around you"];
         function selectMessages()
         {
             var dayInMs = 24*3600*1000;
             var now = new Date();
-            var xmas = new Date(2014, 12, 25, 0, 0, 0);
-            var diffDays = (now.getTime() - xmas.getTime()) / dayInMs;
+            var xmas = new Date(2014, 11, 13, 0, 0, 0);
+            var diffDays = Math.floor((xmas - now) / dayInMs);
             if (diffDays < 1)
                 diffDays = 1;
             if (diffDays > msgBank.length)
                 diffDays = msgBank.length;
-            return msgBank.slice(0, diffDays+1).reverse();
+            return msgBank.slice(0, diffDays).reverse();
         }
         function animateMessages(msgs)
         {
