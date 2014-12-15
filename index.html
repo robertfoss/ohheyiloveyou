@@ -78,14 +78,22 @@
     <script type="text/javascript">
         <!--
         var msgBank = ["<3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3",
-                       "I love you so much",
-                       "it's so easy to be who I want to be around you"];
+                       "I love you so much", //25
+                       "it's so easy to be who I want to be around you", //26
+                       "nesting with you will be best", //27
+                       "", //28
+                       "", //29
+                       "", //30
+                       "", //31
+                       "I am going to kiss your face a lot when you get here", //1
+                       "shouldn't you be on a plane now ?" //2
+                       ];
         function selectMessages()
         {
             var dayInMs = 24*3600*1000;
             var now = new Date();
             var xmas = new Date(2014, 11, 25, 0, 0, 0);
-            var diffDays = Math.floor((xmas - now) / dayInMs);
+            var diffDays = Math.floor((now - xmas) / dayInMs);
             if (diffDays < 1)
                 diffDays = 1;
             if (diffDays > msgBank.length)
@@ -145,14 +153,14 @@
     <div class="container">
         <div id="content" class="content">
             <img src="heart_svg.png">
-            <div id="t1" class="text textbox1">111111111111111111111</div>
-            <div id="t2" class="text textbox2">222222222222222222222</div>
-            <div id="t3" class="text textbox3">333333333333333333333</div>
-            <div id="t4" class="text textbox4">444444444444444444444</div>
-            <div id="t5" class="text textbox5">555555555555555555555</div>
-            <div id="t6" class="text textbox6">666666666666666666666</div>
-            <div id="t7" class="text textbox7">777777777777777777777</div>
-            <div id="t8" class="text textbox8">888888888888888888888</div>
+            <div id="t1" class="text textbox1"></div>
+            <div id="t2" class="text textbox2"></div>
+            <div id="t3" class="text textbox3"></div>
+            <div id="t4" class="text textbox4"></div>
+            <div id="t5" class="text textbox5"></div>
+            <div id="t6" class="text textbox6"></div>
+            <div id="t7" class="text textbox7"></div>
+            <div id="t8" class="text textbox8"></div>
         </div>
     </div>
 </body>
