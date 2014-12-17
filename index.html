@@ -85,10 +85,10 @@
                        "I love you so much", //25
                        "it's so easy to be who I want to be around you", //26
                        "nesting with you will be best", //27
-                       "", //28
-                       "", //29
-                       "", //30
-                       "", //31
+                       "loves your face!", //28
+                       "I can't wait to wake up beside you every day", //29
+                       "can we have crafing nights ?", //30
+                       "wanna do some more pair modelling ?", //31
                        "I am going to kiss your face a lot when you get here", //1
                        "shouldn't you be on a plane now ?" //2
                        ];
@@ -96,13 +96,13 @@
         {
             var dayInMs = 24*3600*1000;
             var now = new Date();
-            var xmas = new Date(2014, 11, 25, 0, 0, 0);
-            var diffDays = Math.floor((now - xmas) / dayInMs);
-            if (diffDays < 1)
-                diffDays = 1;
+            var xmas = new Date(2014, 11, 17, 0, 0, 0);
+            var diffDays = 1+Math.floor((now - xmas) / dayInMs);
+            if (diffDays < 0)
+                diffDays = 0;
             if (diffDays > msgBank.length)
                 diffDays = msgBank.length;
-            return msgBank.slice(0, diffDays).reverse();
+            return msgBank.slice(0, diffDays+1).reverse();
         }
         function animateMessages(msgs)
         {
@@ -116,7 +116,6 @@
                 words.forEach(function(word) {
                     setTimeout(function(){
                         animateWord(word);                
-                    
                     }, timeout);
                     timeout += timePerWord;
                 });
@@ -141,7 +140,6 @@
                            .fadeIn(fadeIn)
                            .fadeOut(fadeOut);
         }
-        
         $(function () {
             var msgs = selectMessages();
             var content = $("#content");
