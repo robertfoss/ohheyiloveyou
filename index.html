@@ -89,9 +89,7 @@
                        "loves your face!", //28
                        "waking up and seeing you is the best thing that could happen", //29
                        "can we have crafting nights ?", //30
-                       "wanna do some more pair modelling ?", //31
-                       "I am going to kiss your face a lot when you get here", //1
-                       "shouldn't you be on a plane now ?" //2
+                       "wanna do some more pair modelling ?" //31
                        ];
         function selectMessages()
         {
@@ -110,13 +108,13 @@
             var timePerWord = 800;
             var timePerMsg  = 5500;
             var timeout = 400; // Initialized with the time to first word
-            
+
             // Queue up animations
             msgs.forEach(function(msg) {
                 var words = msg.split(" ");
                 words.forEach(function(word) {
                     setTimeout(function(){
-                        animateWord(word);                
+                        animateWord(word);
                     }, timeout);
                     timeout += timePerWord;
                 });
@@ -127,7 +125,7 @@
         {
             var fadeIn  = 400;
             var fadeOut = 2500;
-            
+
             // Pick a box that isn't animating
             var boxes = $('[id^="t"]');
             var readyBoxes = boxes.filter(':not(:animated)').toArray();
@@ -135,7 +133,7 @@
             var rand = Math.floor(Math.random()*nbrReady);
             var obj = readyBoxes[rand];
             var elemID = obj.getAttribute('id');
-            
+
             // Animate
             $("#" + elemID).text(word)
                            .fadeIn(fadeIn)
